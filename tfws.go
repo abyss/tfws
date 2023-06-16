@@ -23,7 +23,7 @@ func main() {
 	cmd := exec.Command("terraform", "workspace", "list", "-no-color")
 	output, err := cmd.Output()
 	if err != nil {
-		log.Fatalf("Failed to execute 'terraform workspace list': %s", err)
+		log.Fatalf("Failed to execute 'terraform workspace list'.\nMake sure that you have run 'terraform init'.")
 	}
 
 	// Split the output into individual lines
@@ -40,7 +40,7 @@ func main() {
 		}
 	}
 
-	// Display message if there are no workspaces
+	// Display message if there is only one workspace
 	if len(validWorkspaces) == 1 {
 		fmt.Println("There are no workspaces in use in the current project.")
 		fmt.Println("To create a new one, use 'terraform workspace new'")
