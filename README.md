@@ -1,0 +1,2 @@
+# tfws
+Terraform Workspace Selector
