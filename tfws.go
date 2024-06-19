@@ -47,7 +47,6 @@ func main() {
 		return
 	}
 
-	// Create items for the prompt
 	items := make([]string, len(validWorkspaces))
 	defaultIndex := 0
 	for i, workspace := range validWorkspaces {
@@ -57,14 +56,12 @@ func main() {
 		}
 	}
 
-	// Create the select prompt
 	prompt := &survey.Select{
 		Message: "Select a Terraform workspace:",
 		Options: items,
 		Default: items[defaultIndex],
 	}
 
-	// Run the prompt
 	var selectedWorkspace string
 	err = survey.AskOne(prompt, &selectedWorkspace, survey.WithPageSize(10))
 	if err != nil {
@@ -73,7 +70,6 @@ func main() {
 
 	fmt.Printf("Selected workspace: %s\n", selectedWorkspace)
 
-	// Select the chosen workspace
 	cmd = exec.Command("terraform", "workspace", "select", selectedWorkspace)
 	if err := cmd.Run(); err != nil {
 		log.Fatalf("Failed to execute 'terraform workspace select': %s", err)
