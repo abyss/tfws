@@ -1,5 +1,6 @@
 version: '3'
 
 tasks:
-  build: go build -o bin/tfws
-  install: cp bin/tfws ~/bin/
+  build: goreleaser release --snapshot --clean
+  tidy: go mod tidy
+  clean: rm -r bin/ && rm -r dist/
