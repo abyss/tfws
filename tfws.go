@@ -68,8 +68,6 @@ func main() {
 		log.Fatalf("Failed to run the prompt: %s", err)
 	}
 
-	fmt.Printf("Selected workspace: %s\n", selectedWorkspace)
-
 	cmd = exec.Command("terraform", "workspace", "select", selectedWorkspace)
 	if err := cmd.Run(); err != nil {
 		log.Fatalf("Failed to execute 'terraform workspace select': %s", err)
